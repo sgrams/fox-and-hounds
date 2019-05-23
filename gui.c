@@ -27,7 +27,7 @@ int32_t   depth, screen;
 XSetWindowAttributes windowattributes;
 
 int32_t
-gui_init ()
+gui_init (board_t *board)
 {
   display = XOpenDisplay  ("");
   screen  = DefaultScreen (display);
@@ -52,6 +52,10 @@ gui_init ()
   XStoreName (display, window,"Fox and Hounds");
   XMapWindow (display, window);
   gc = DefaultGC (display, screen);
+
+  XNextEvent (display, &event);
+  if (event.type == Expose)
+    gui_draw_board (board);
 
   return 0;
 }

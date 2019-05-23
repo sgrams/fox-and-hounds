@@ -25,13 +25,12 @@ main (int32_t argc, char *argv[]) {
   pawn_type_t pawn = argc <= 1 ? (pawn_type_t)fox : (pawn_type_t)hounds;
   pawn_t  fox;
 
-  gui_init ();
-
   board_init (&board);
   board_add_hounds (&board);
 
-  gui_clear_events ();
+  gui_init (&board);
   gui_draw_board (&board);
+  gui_clear_events ();
 
   if (pawn == 0) {
     printf ("you are a fox!\n");

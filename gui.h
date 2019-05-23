@@ -10,7 +10,7 @@
 #include <X11/X.h>
 
 int32_t
-gui_init ();
+gui_init (board_t *board);
 
 int32_t
 gui_draw_board (board_t *board);
