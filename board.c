@@ -121,7 +121,7 @@ board_check_state (board_t *board)
         } else {
           counter = 0;
           // left upper
-          if (i - 1 > 0 && j + 1 < BOARD_SIZE) {
+          if (i - 1 >= 0 && j + 1 < BOARD_SIZE) {
             if (board[0][i-1][j+1] == 1) {
               blocked++;
             }
@@ -135,14 +135,14 @@ board_check_state (board_t *board)
             counter++;
           }
           // left lower
-          if (i - 1 > 0 && j - 1 > 0) {
+          if (i - 1 >= 0 && j - 1 >= 0) {
             if (board[0][i-1][j-1] == 1) {
               blocked++;
             }
             counter++;
           }
           // right lower
-          if (i + 1 < BOARD_SIZE && j - 1 > 0) {
+          if (i + 1 < BOARD_SIZE && j - 1 >= 0) {
             if (board[0][i+1][j-1] == 1) {
               blocked++;
             }
