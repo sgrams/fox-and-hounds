@@ -1,0 +1,24 @@
+Stanisław Grams <sjg@fmdx.pl>
+Gra wilk i owce
+
+1. Opis programu
+Gra w "wilka i owce", na planszy 8x8.
+Wilk wygrywa, gdy uda mu się dostać do pierwszego rzędu a owce gdy otoczą wilka i nie dopuszczą do jego wygranej. Pion wilka jest koloru żółtego, nastomiast piony reprezentujące owce są koloru zielonego.
+
+2. Uzasadnienie merytoryczne komunikacji za pomocą gniazd BSD
+Wybrano gniazda datagramowe BSD na sposób komunikacji między serwerem a klientem ze względu na prostotę zastosowania i implementacji gry. Synchronizacja następuje przez kolejno otrzymywane wiadomości poprzez mechanizm gniazd UDP.
+
+3. Użytkowanie programu
+  - Kompilacja następuje poprzez wykonanie przygotowanego pliku Makefile komendą `make`.
+  - Uruchomienie serwera gry (pierwszy gracz): ./fox
+  - Uruchomienia klienta gry (drugi gracz): ./fox <adres ip>
+
+3. Opis działania programu
+  Grę zaczyna serwer – wilk do którego podłącza się klient - owce.
+  Owce znajdują się zawsze na tym samym miejscu - na czarnych polach pierwszego rzędu,
+  natomiast wilk jest losowany na różnych miejscach ostatniego rzędu.
+  Gra sprawdza, czy wykonano poprawny ruch - pierwszy ruch nalezy do serwera - wilka a jeśli jest poprawny
+  to czy gra się zakończyła.
+  Wilk po otrzymaniu komunikatu o podłączeniu się klienta do gniazda wysyła swoją pozycję na planszy (losowanie) a następnie wysyła pierwszy ruch po czym przechodzi w tryb oczekiwania na odpowiedź. Ruch należy do owiec.
+
+  Jeżeli gracz wykona niepoprawny ruch to program pozostaje w pętli oczekiwania.
